@@ -1,4 +1,4 @@
-from examples.ce.cost_explorer import CostExplorer, new_cost_explorer
+from examples.ce.cost_explorer import CostExplorer
 
 
 def determine_cost(client: CostExplorer) -> None:
@@ -18,9 +18,10 @@ def determine_cost(client: CostExplorer) -> None:
                 region_name = group.get('Keys')[1]
                 print(f" --> {service_name} -> {region_name} -> {cost}")
         print(f" --> total: {sub_total}")
+
     print("=========================================")
     print(f"total: {total}")
 
 
 if __name__ == "__main__":
-    determine_cost(new_cost_explorer())
+    determine_cost(CostExplorer.new_instance())
