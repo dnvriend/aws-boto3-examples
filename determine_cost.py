@@ -1,10 +1,13 @@
 from examples.ce.cost_explorer import CostExplorer
+from datetime import date, timedelta
 
 
 def determine_cost(client: CostExplorer) -> None:
     total: float = 0
-    for result in client.get_cost_and_usage("2018-08-01",
-                                            "2018-08-05").get('ResultsByTime'):
+    today: date = date.today()
+    yesterday: date = today - timedelta(days=1)
+    for result in client.get_cost_and_usage(yesterday.isoformat(),
+                                            today.isoformat()).get('ResultsByTime'):
         sub_total: float = 0
         start = result.get('TimePeriod').get('Start')
         end = result.get('TimePeriod').get('End')
